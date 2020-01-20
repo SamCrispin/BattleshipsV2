@@ -1,0 +1,33 @@
+player 
+    cpu and human inherit from it
+    -S number of players
+    -S player turn
+    -name
+    -order (turn order/que position)
+    -score (ships hit??)
+    -board (vector of vectors of int??)
+    +place ship (human: manual, cpu: random)
+    +shoot (human: manual, cpu: dependant on AI level)
+    +move ship? (wipes a ship and places it again?)
+    +print board (takes in param, whos viewing board)
+
+controller
+    -players (vector of players)
+
+ship generator
+    -ask if user wants to play a custom cell, custom ship or standard game
+    -enum of game types for FSM
+    -standard game
+        -standard game layout (2: 1, 3: 2, 4: 1, 5: 1) will be stored as a const somewhere (static in player??)
+    -custom ship game
+        -asks user for what ships each player will have
+    -custom cell game
+        -get numbers of cells (between a min and max, modifiable in config file? normal game is 17)
+        -asks user to distribute cells to ships
+            -if max is 15 cells, example distribution could be 2: 1, 3: 1, 4: 0, 5: 2 - adds up to 15
+            -UX of this still to be thought of, easy to make hard to use
+            -get ship names, if left empty, assign auto gen name e.g. ship1, ship2 etc.
+        -CPU will distribute randomly
+            -auto named ship1, ship2 etc.
+        -this game mode makes it so each player can have different ship types but with the same amout of total cells,        just changing the game up a bit
+    -pushes ships to a vector in each players individual class
